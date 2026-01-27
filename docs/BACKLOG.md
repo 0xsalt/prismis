@@ -8,8 +8,6 @@
 
 ## NOW
 
-- [ ] **001-webui-upvote-downvote** - Add thumbs up/down buttons for user feedback on content relevance
-- [ ] **002-feedback-storage** - Store user feedback in DB (expand interesting_override or new field)
 - [ ] **003-light-preference-learning** - Use stored feedback to adjust LLM prioritization via prompt context
 
 ## BACKLOG
@@ -32,6 +30,8 @@
 
 ## DONE
 
+- [x] **002-feedback-storage** - Feedback statistics API endpoint with source/topic aggregation for preference learning [2026-01-27]
+- [x] **001-webui-upvote-downvote** - Thumbs up/down buttons with toggle behavior, persisted to DB [2026-01-27]
 - [x] **000-webui-collapse-duplicates** - Fuzzy title matching (80%+) in daemon API groups duplicates with count indicator [2026-01-27]
 - [x] **Configure context.md with personal interests** - Curated from TELOS for AI/security/privacy priorities [2026-01-27]
 - [x] **Add initial content sources** - 25 sources: Reddit (7), RSS/arXiv (14), YouTube (3), Podcast (1) [2026-01-27]
