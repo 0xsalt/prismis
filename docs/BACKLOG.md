@@ -8,7 +8,6 @@
 
 ## NOW
 
-- [ ] **000-webui-collapse-duplicates** - Collapse duplicate items (Top 3 vs main list) with count indicator instead of filtering
 - [ ] **001-webui-upvote-downvote** - Add thumbs up/down buttons for user feedback on content relevance
 - [ ] **002-feedback-storage** - Store user feedback in DB (expand interesting_override or new field)
 - [ ] **003-light-preference-learning** - Use stored feedback to adjust LLM prioritization via prompt context
@@ -33,6 +32,7 @@
 
 ## DONE
 
+- [x] **000-webui-collapse-duplicates** - Fuzzy title matching (80%+) in daemon API groups duplicates with count indicator [2026-01-27]
 - [x] **Configure context.md with personal interests** - Curated from TELOS for AI/security/privacy priorities [2026-01-27]
 - [x] **Add initial content sources** - 25 sources: Reddit (7), RSS/arXiv (14), YouTube (3), Podcast (1) [2026-01-27]
 - [x] **Publish to service-dashboard** - Exposed via tailscale serve on port 5001 [2026-01-27]
