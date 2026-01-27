@@ -330,6 +330,74 @@
             letter-spacing: 0.1em;
         }
 
+        .top3-collapsed-banner {
+            background: rgba(0, 217, 255, 0.08);
+            border: 1px solid rgba(0, 217, 255, 0.3);
+            border-radius: 6px;
+            padding: 12px 16px;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .top3-collapsed-banner:hover {
+            background: rgba(0, 217, 255, 0.12);
+            border-color: #00D9FF;
+        }
+
+        .top3-collapsed-banner .banner-text {
+            color: #00D9FF;
+            font-size: 13px;
+            font-weight: 500;
+        }
+
+        .top3-collapsed-banner .banner-action {
+            color: #888888;
+            font-size: 12px;
+        }
+
+        .top3-expanded-section {
+            background: rgba(0, 217, 255, 0.05);
+            border: 1px solid rgba(0, 217, 255, 0.2);
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 15px;
+        }
+
+        .top3-expanded-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid rgba(0, 217, 255, 0.2);
+        }
+
+        .top3-expanded-header .header-text {
+            color: #00D9FF;
+            font-size: 13px;
+            font-weight: 500;
+        }
+
+        .top3-collapse-btn {
+            background: transparent;
+            border: 1px solid #444444;
+            color: #888888;
+            padding: 4px 10px;
+            border-radius: 4px;
+            font-size: 11px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .top3-collapse-btn:hover {
+            border-color: #00D9FF;
+            color: #00D9FF;
+        }
+
         .item-summary {
             font-size: 15px;
             color: #CCCCCC;
@@ -644,6 +712,8 @@
                 this.maxRetryAttempts = 3;
                 this.isGeneratingAudio = false;
                 this.currentAudioFile = null;
+                this.isTop3Expanded = false;
+                this.top3Items = [];
 
                 this.init();
             }
@@ -980,6 +1050,33 @@
                 });
             }
 
+            renderTop3Banner() {
+                const count = this.top3Items.length;
+                const itemText = count === 1 ? 'item' : 'items';
+
+                if (this.isTop3Expanded) {
+                    // Expanded state - show items inline with collapse button
+                    const itemsHtml = this.top3Items.map(item => this.renderContentItem(item)).join('');
+                    return `
+                        <div class="top3-expanded-section">
+                            <div class="top3-expanded-header">
+                                <span class="header-text">${count} ${itemText} from Must-Reads</span>
+                                <button class="top3-collapse-btn" id="collapseTop3Btn">Collapse</button>
+                            </div>
+                            <div class="content-list">${itemsHtml}</div>
+                        </div>
+                    `;
+                } else {
+                    // Collapsed state - show banner
+                    return `
+                        <div class="top3-collapsed-banner" id="expandTop3Banner">
+                            <span class="banner-text">${count} ${itemText} shown in Must-Reads above</span>
+                            <span class="banner-action">Tap to expand</span>
+                        </div>
+                    `;
+                }
+            }
+
             renderContent() {
                 const container = document.getElementById('contentContainer');
 
@@ -989,11 +1086,22 @@
                     return;
                 }
 
-                // Render Top 3 Must-Reads
+                // Render Top 3 Must-Reads and store the items
+                this.top3Items = this.computeTop3MustReads();
                 this.renderTop3MustReads();
 
-                const html = this.content.map(item => this.renderContentItem(item)).join('');
-                container.innerHTML = `<div class="content-list">${html}</div>`;
+                // Filter out Top 3 items from main list
+                const top3Ids = new Set(this.top3Items.map(item => item.id));
+                const filteredContent = this.content.filter(item => !top3Ids.has(item.id));
+
+                // Render collapsed/expanded banner if there are Top 3 items
+                let bannerHtml = '';
+                if (this.top3Items.length > 0) {
+                    bannerHtml = this.renderTop3Banner();
+                }
+
+                const html = filteredContent.map(item => this.renderContentItem(item)).join('');
+                container.innerHTML = `${bannerHtml}<div class="content-list">${html}</div>`;
 
                 // Add event listeners for mark-as-read buttons
                 container.querySelectorAll('.mark-read-btn').forEach(btn => {
@@ -1002,6 +1110,23 @@
                         this.markAsRead(itemId, e.target);
                     });
                 });
+
+                // Add event listener for Top 3 expand/collapse
+                const expandBanner = document.getElementById('expandTop3Banner');
+                if (expandBanner) {
+                    expandBanner.addEventListener('click', () => {
+                        this.isTop3Expanded = true;
+                        this.renderContent();
+                    });
+                }
+
+                const collapseBtn = document.getElementById('collapseTop3Btn');
+                if (collapseBtn) {
+                    collapseBtn.addEventListener('click', () => {
+                        this.isTop3Expanded = false;
+                        this.renderContent();
+                    });
+                }
             }
 
             renderContentItem(item, isTop3 = false) {
