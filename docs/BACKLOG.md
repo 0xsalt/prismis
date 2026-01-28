@@ -11,6 +11,8 @@
 - [ ] **OpenAI news workaround** - Direct RSS blocked (403). Use RSS-Bridge or custom fetcher
 
 ## BACKLOG
+- [ ] **Health dashboard page** - Add "Health" button to main page header that opens a health check page showing source health (error counts, last fetch, items), daemon status, and relevant metrics
+- [ ] **Category-based context switching** - User-defined categories (e.g., "work", "default", "friends") with distinct context.md prompts per category. Enables switching focus modes and supporting friend daemon feeds/status
 - [ ] **Anthropic official news** - No public RSS. Options: scrape blog, RSS-Bridge, or monitor r/ClaudeAI
 - [ ] **Export to Obsidian** - Daily digest export to knowledge base (markdown format)
 - [ ] **Better source error handling** - Improve daemon error recovery and retry logic
