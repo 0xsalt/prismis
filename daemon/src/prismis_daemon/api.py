@@ -1373,7 +1373,9 @@ async def get_statistics(
 
 @app.get("/api/feedback/statistics", dependencies=[Depends(verify_api_key)])
 async def get_feedback_statistics(
-    since_days: int | None = Query(None, description="Limit to feedback within N days"),
+    since_days: int | None = Query(
+        30, description="Limit to feedback within N days (default: 30, use null for all time)"
+    ),
     storage: Storage = Depends(get_storage),
 ) -> dict:
     """Get user feedback statistics aggregated by source and topic.
@@ -1385,7 +1387,7 @@ async def get_feedback_statistics(
     - Pre-formatted summary for LLM prompt injection
 
     Args:
-        since_days: Optional limit to feedback within N days (None = all time)
+        since_days: Limit to feedback within N days (default: 30 for recency weighting)
         storage: Storage instance injected by FastAPI
 
     Returns:

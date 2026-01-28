@@ -8,11 +8,9 @@
 
 ## NOW
 
-- [ ] **003-light-preference-learning** - Use stored feedback to adjust LLM prioritization via prompt context
+- [ ] **Twitter/X API for Boris feed** - Monitor Anthropic co-founder @borispower for AI insights. Requires Twitter API key setup and prismis twitter source support
 
 ## BACKLOG
-
-- [ ] **Twitter/X API for Boris feed** - Monitor Anthropic co-founder @borispower for AI insights. Requires Twitter API key setup and prismis twitter source support
 - [ ] **GitHub trending projects briefing** - Curate relevant trending repos. Options: GitHub trending RSS, custom scraper, or GitHub API polling. Need strategy discussion
 - [ ] **OpenAI news workaround** - Direct RSS blocked (403). Options: RSS-Bridge, different URL, or custom fetcher
 - [ ] **Anthropic official news** - No public RSS. Options: scrape blog, RSS-Bridge, or monitor r/ClaudeAI
@@ -30,6 +28,7 @@
 
 ## DONE
 
+- [x] **003-light-preference-learning** - Learned preferences from user feedback supplement LLM prioritization with 5-vote threshold [2026-01-27]
 - [x] **002-feedback-storage** - Feedback statistics API endpoint with source/topic aggregation for preference learning [2026-01-27]
 - [x] **001-webui-upvote-downvote** - Thumbs up/down buttons with toggle behavior, persisted to DB [2026-01-27]
 - [x] **000-webui-collapse-duplicates** - Fuzzy title matching (80%+) in daemon API groups duplicates with count indicator [2026-01-27]
