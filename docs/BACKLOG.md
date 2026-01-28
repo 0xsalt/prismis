@@ -8,32 +8,29 @@
 
 ## NOW
 
-- [ ] **Reddit source fix** - 401 errors in logs; Reddit fetcher broken. Fix before adding new sources
+- [ ] **OpenAI news workaround** - Direct RSS blocked (403). Use RSS-Bridge or custom fetcher
 
 ## BACKLOG
-
-- [ ] **MCP server for AI agent queries** - Daemon service for prismis queries. High value for Graybeard Meetup. DEPENDS ON: daemon-mcp server updates first
+- [ ] **Anthropic official news** - No public RSS. Options: scrape blog, RSS-Bridge, or monitor r/ClaudeAI
 - [ ] **Export to Obsidian** - Daily digest export to knowledge base (markdown format)
 - [ ] **Better source error handling** - Improve daemon error recovery and retry logic
 - [ ] **arXiv feed tuning** - High volume, filter by score/citations or time-based limits
 - [ ] **Papers support (arXiv PDF)** - PDF ingestion beyond RSS metadata
-- [ ] **Manual content ingestion** - One-off URLs/PDFs for ad-hoc analysis
-- [ ] **OpenAI news workaround** - Direct RSS blocked (403). Use RSS-Bridge or custom fetcher
-- [ ] **Anthropic official news** - No public RSS. Options: scrape blog, RSS-Bridge, or monitor r/ClaudeAI
 - [ ] **Daemon process management (Linux)** - systemd service unit for prismis-daemon
 - [ ] **Daemon process management (macOS)** - launchd plist for prismis-daemon
-- [ ] **Twitter/X API for Boris feed** - Monitor @borispower. Requires Twitter API key ($100/mo)
-- [ ] **GitHub trending projects briefing** - Curate relevant trending repos. Options: GitHub trending RSS, custom scraper, or GitHub API polling
+- [ ] **MCP server for AI agent queries** - Daemon service for prismis queries. High value for Graybeard Meetup. DEPENDS ON: daemon-mcp server updates first
 - [ ] **Friends' daemon feeds** - Architecture for subscribing to friends' prismis instances. Need planning on auth, discovery, and feed format
+- [ ] **Twitter/X API for Boris feed** - Monitor @borispower. Requires Twitter API key ($100/mo); Research ThreadReaderApp to see if they have an api; research alternative Twitter/X access platforms, they exist; 
+- [ ] **GitHub trending projects briefing** - Curate relevant trending repos. Options: GitHub trending RSS, custom scraper, or GitHub API polling
 
 ## ROADMAP
 
 - [ ] **Custom priority keywords** - Allow keyword-based priority boosting beyond context.md
 - [ ] **Source grouping** - Organize sources into categories for filtered views
-- [ ] **Notification tuning** - Different notification rules per source type
 
 ## DONE
 
+- [x] **004-reddit-source-fix** - Makefile `start` now sources .env files before daemon launch, fixing 401 auth errors [2026-01-28]
 - [x] **003-light-preference-learning** - Learned preferences from user feedback supplement LLM prioritization with 5-vote threshold [2026-01-27]
 - [x] **002-feedback-storage** - Feedback statistics API endpoint with source/topic aggregation for preference learning [2026-01-27]
 - [x] **001-webui-upvote-downvote** - Thumbs up/down buttons with toggle behavior, persisted to DB [2026-01-27]

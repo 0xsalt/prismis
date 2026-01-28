@@ -182,8 +182,14 @@ stop: ## Stop any running prismis processes
 start: ## Start the prismis daemon
 	@echo "Starting prismis daemon..."
 	@if command -v prismis-daemon >/dev/null 2>&1; then \
-		prismis-daemon & \
-		echo "✓ Daemon started"; \
+		( \
+			set -a; \
+			[ -f $(CONFIG_DIR)/.env ] && . $(CONFIG_DIR)/.env; \
+			[ -f $(HOME)/.claude/.env ] && . $(HOME)/.claude/.env; \
+			set +a; \
+			prismis-daemon & \
+		); \
+		echo "✓ Daemon started (with environment loaded)"; \
 		echo "Run 'prismis' to launch the TUI"; \
 	else \
 		echo "❌ prismis-daemon not found. Run 'make install' first"; \
