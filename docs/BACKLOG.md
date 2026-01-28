@@ -8,23 +8,29 @@
 
 ## NOW
 
-- [ ] **Twitter/X API for Boris feed** - Monitor Anthropic co-founder @borispower for AI insights. Requires Twitter API key setup and prismis twitter source support
+- [ ] **Reddit source fix** - 401 errors in logs; Reddit fetcher broken. Fix before adding new sources
 
 ## BACKLOG
-- [ ] **GitHub trending projects briefing** - Curate relevant trending repos. Options: GitHub trending RSS, custom scraper, or GitHub API polling. Need strategy discussion
-- [ ] **OpenAI news workaround** - Direct RSS blocked (403). Options: RSS-Bridge, different URL, or custom fetcher
+
+- [ ] **MCP server for AI agent queries** - Daemon service for prismis queries. High value for Graybeard Meetup. DEPENDS ON: daemon-mcp server updates first
+- [ ] **Export to Obsidian** - Daily digest export to knowledge base (markdown format)
+- [ ] **Better source error handling** - Improve daemon error recovery and retry logic
+- [ ] **arXiv feed tuning** - High volume, filter by score/citations or time-based limits
+- [ ] **Papers support (arXiv PDF)** - PDF ingestion beyond RSS metadata
+- [ ] **Manual content ingestion** - One-off URLs/PDFs for ad-hoc analysis
+- [ ] **OpenAI news workaround** - Direct RSS blocked (403). Use RSS-Bridge or custom fetcher
 - [ ] **Anthropic official news** - No public RSS. Options: scrape blog, RSS-Bridge, or monitor r/ClaudeAI
+- [ ] **Daemon process management (Linux)** - systemd service unit for prismis-daemon
+- [ ] **Daemon process management (macOS)** - launchd plist for prismis-daemon
+- [ ] **Twitter/X API for Boris feed** - Monitor @borispower. Requires Twitter API key ($100/mo)
+- [ ] **GitHub trending projects briefing** - Curate relevant trending repos. Options: GitHub trending RSS, custom scraper, or GitHub API polling
 - [ ] **Friends' daemon feeds** - Architecture for subscribing to friends' prismis instances. Need planning on auth, discovery, and feed format
-- [ ] **Test alternative LLM providers** - Compare gpt-4o-mini vs Claude Haiku vs Groq for quality/speed/cost tradeoffs
-- [ ] **Reddit source tuning** - Adjust max_comments and filtering based on signal-to-noise ratio
-- [ ] **arXiv feed tuning** - High volume, may need filtering by score/citations or time-based limits
 
 ## ROADMAP
 
 - [ ] **Custom priority keywords** - Allow keyword-based priority boosting beyond context.md
 - [ ] **Source grouping** - Organize sources into categories for filtered views
 - [ ] **Notification tuning** - Different notification rules per source type
-- [ ] **Export to Obsidian** - Daily digest export to knowledge base
 
 ## DONE
 
